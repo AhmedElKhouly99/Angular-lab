@@ -1,0 +1,54 @@
+<!-- <p>products works!</p> -->
+
+<h1>{{storeName}}</h1>
+<img [src]="storeLogo" width="200px" />
+<h3 *ngIf="discount !== 'No Discount'">We offer an explicit discount of: {{ discount  | percent }}</h3>
+<br/>
+<select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+    <option selected>Open this select menu</option>
+    <option *ngFor="let cat of categoryList" value="1">{{cat.name}}</option>
+</select>
+
+<br/>
+<button type="button" (click)="toggleBtn()" class="btn btn-lg btn-primary">Show Products</button>
+
+<div *ngIf="isPurshased; then products ; else thanksDiv">
+
+</div>
+<ng-template #thanksDiv>
+    <div>
+        Thanks for purchasing from our Store {{clientName}}
+    </div>
+</ng-template>
+
+<ng-template #products>
+    <br/><br/>
+    <button type="button" (click)="selectDiscount()" class="btn btn-primary">with discount</button>
+    <br/><br/>
+    <!-- <button type="button" (click)="" class="btn btn-danger">without discount</button> -->
+    <br/>
+    <router-outlet></router-outlet>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let pro of productList">
+                <th scope="row">{{pro.iD}}</th>
+                <td>{{pro.name | uppercase}}</td>
+                <td>{{pro.quantity}}</td>
+                <td>{{pro.price}}</td>
+            </tr>
+        </tbody>
+    </table>
+</ng-template>
+<br/>
+<input class="form-control form-control-lg" type="text" [(ngModel)]="clientName" placeholder="Client Name"
+    aria-label=".form-control-lg example">
+{{clientName}}
+<br/>

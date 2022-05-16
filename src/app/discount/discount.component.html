@@ -1,0 +1,23 @@
+<!-- <p>discount works!</p> -->
+
+<div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let pro of productList">
+                <th scope="row">{{pro.iD}}</th>
+                <td>{{pro.name | uppercase}}</td>
+                <td>{{pro.quantity}}</td>
+                <td>{{pro.price * 1-discount}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+

@@ -1,0 +1,39 @@
+<!-- <p>login works!</p> -->
+
+
+<div class="container">
+    <form #userForm="ngForm" novalidate (ngSubmit)="SaveData()">
+        {{userForm.value |json}}
+        <br>
+        {{userModel|json}}
+
+        <!-- {{name.className}} -->
+        <!-- {{name.touched}} -->
+
+        <div class="form-group">
+            <label>Email</label>
+            <input pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" type="email" name="txtEmail"
+                [(ngModel)]="userModel.email" #email="ngModel" class="form-control">
+            <div *ngIf="email.errors && email.touched">
+                <small class="text-danger" *ngIf="email.errors['required']">Email is Required</small>
+                <small class="text-danger" *ngIf="email.errors['pattern']">Email Must in Form of
+                    (example@mail.com)</small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" name="txtPaaword" #password="ngModel" pattern="^\w{11}$" required
+                [class.is-invalid]="password.invalid && password.touched" [(ngModel)]="userModel.password"
+                class="form-control">
+
+            <div *ngIf="password.errors && password.touched">
+                <small class="text-danger" *ngIf="password.errors['required']">Password is required</small>
+                <small class="text-danger" *ngIf="password.errors['pattern']">Phone must be at least 11 digit</small>
+            </div>
+        </div>
+
+        <input type="submit" class="btn btn-primary" value="SUBMIT" [disabled]="userForm.form.invalid">
+
+    </form>
+</div>

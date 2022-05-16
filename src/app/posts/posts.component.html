@@ -1,0 +1,15 @@
+<!-- <ul class="list-group" >
+    <li class="list-group-item list-group-item-primary" *ngFor="let user of users" style="margin: 0 auto; width: 20%;">A simple primary list group item</li>
+</ul> -->
+
+<div class="list-group">
+    <a href="#" class="list-group-item list-group-item-action" style="margin-top: 2%;" aria-current="true" *ngFor="let post of posts">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">{{post.title}}</h5>
+        <!-- <small>3 days ago</small> -->
+      </div>
+      <p class="mb-1">{{post.body}}</p>
+      <!-- <small>And some small print.</small> -->
+    </a>
+    
+  </div>
